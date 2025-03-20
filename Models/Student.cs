@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace StudentPerformanceAPI
+namespace StudentPerformanceAPI.Models
 {
     public class Student
     {
