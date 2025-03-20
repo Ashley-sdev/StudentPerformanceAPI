@@ -1,7 +1,7 @@
-﻿using StudentPerformanceAPI.Data;
-using StudentPerformanceAPI.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentPerformanceAPI.Data;
+using StudentPerformanceAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,6 +40,15 @@ namespace StudentPerformanceAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
+            // Predefined valid course codes
+            string[] validCourses = { "BIT301", "CS101", "IT305", "SE400" }; // Add more valid course codes here
+
+            // Check if the course code is valid
+            if (!validCourses.Contains(student.CourseCode))
+            {
+                return BadRequest("Invalid Course Code. Please use a valid course abbreviation.");
+            }
+
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
 
@@ -51,6 +60,15 @@ namespace StudentPerformanceAPI.Controllers
         public async Task<IActionResult> PutStudent(int id, Student student)
         {
             if (id != student.Id) return BadRequest();
+
+            // Predefined valid course codes for PUT request
+            string[] validCourses = { "BIT301", "CS101", "IT305", "SE400" }; // Add more valid course codes here
+
+            // Check if the course code is valid for updating
+            if (!validCourses.Contains(student.CourseCode))
+            {
+                return BadRequest("Invalid Course Code. Please use a valid course abbreviation.");
+            }
 
             _context.Entry(student).State = EntityState.Modified;
 
