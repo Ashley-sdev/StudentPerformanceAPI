@@ -1,4 +1,4 @@
-﻿using StudentPerformanceAPI.Models; 
+﻿using StudentPerformanceAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace StudentPerformanceAPI.Data
@@ -8,9 +8,8 @@ namespace StudentPerformanceAPI.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        public DbSet<Student> Students { get; set; } // DbSet for Student model
-    } 
-    
-
+        public DbSet<Student> Students { get; set; }
     }
+    
+}
 
