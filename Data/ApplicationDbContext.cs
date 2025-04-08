@@ -10,7 +10,7 @@ namespace StudentPerformanceAPI.Data
         {
         }
 
-        // Add a DbSet for students
         public DbSet<Student> Students { get; set; }
+
     }
 }

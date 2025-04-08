@@ -6,14 +6,16 @@ namespace StudentPerformanceAPI.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string CourseCode { get; set; }
+        public double AssignmentMarks { get; set; }
+        public double TestMarks { get; set; }
 
-        // New properties
-        public int AssignmentMarks { get; set; }
-        public int TestMarks { get; set; }
-        public int ExamMarks { get; set; }
+        // Computed property for average marks
+        public double AverageMarks => (AssignmentMarks + TestMarks) / 2.0;
 
-        public double Average => (AssignmentMarks + TestMarks + ExamMarks) / 3.0;
-
-        public bool QualifiesForExam => Average >= 50; // pass mark is 50
+        // Determines if student qualifies for exam
+        public bool QualifiesForExam()
+        {
+            return AverageMarks >= 50;
+        }
     }
 }
